@@ -20,14 +20,14 @@ RUN \
     && \
     /root/.cargo/bin/cargo install oxipng
 
-ENV NODE_ENV production
-
-RUN npm install --only=production
-
 COPY ./src /app/src
 COPY ./package.json /app/package.json
 
 WORKDIR /app
+RUN npm install
+
+ENV NODE_ENV production
+
 EXPOSE 3000
 CMD [ "npm", "run", "start" ]
 
